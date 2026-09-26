@@ -7,4 +7,4 @@ AI×SNSスキルを学べるオンライン講座「SOCIAL AI LAB」のランデ
 
 公開URL: https://honeycom1.github.io/landing-page-sample/
 
-- `assets/hero.jpg` : ComfyUI（JuggernautXL v9）で生成したヒーロー画像
+- `assets/hero.jpg` : ComfyUI（JuggernautXL v9）で生成したトップページの女性の画像

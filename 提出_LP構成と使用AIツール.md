@@ -2,7 +2,7 @@
 
 - 講座名（仮）：SOCIAL AI LAB。AIを「編集部」にしてSNS運用を8週間で仕組み化する講座。
 - LP本体は [index.html](index.html)。素のHTML/CSS/JS。公開URL: https://honeycom1.github.io/landing-page-sample/
-- 構成・コピー・デザイン・コーディングは Claude Code（Claude Fable 5.1）、ヒーロー画像は ComfyUI（JuggernautXL v9）で生成。
+- 構成・コピー・デザイン・コーディングは Claude Code（Claude Fable 5.1）、トップページの女性の画像は ComfyUI（JuggernautXL v9）で生成。
 
 ## LP構成
 
@@ -44,7 +44,7 @@
 | ツール | 用途 |
 |---|---|
 | Claude Code（Claude Fable 5.1） | LP構成の設計、キャッチコピーと本文のライティング、配色・タイポグラフィ設計、HTML/CSS/JSの実装、画像生成プロンプトの作成、本提出文書の作成 |
-| ComfyUI + JuggernautXL v9（SDXL） | ヒーロー画像の生成。1024×1280、30 steps、dpmpp_2m karras、CFG 5.5。候補3枚から1枚を採用 |
+| ComfyUI + JuggernautXL v9（SDXL） | トップページの女性の画像の生成。1024×1280、30 steps、dpmpp_2m karras、CFG 5.5。候補3枚から1枚を採用 |
 
 画像生成プロンプト（抜粋）: editorial photograph of a young japanese woman content creator at a bright minimalist desk, holding a smartphone, laptop and small ring light, soft window daylight, warm tangerine orange accent color, shallow depth of field, 35mm lens
 
