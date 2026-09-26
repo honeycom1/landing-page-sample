@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="AI×SNSスキルを8週間で仕組み化するオンライン講座 SOCIAL AI LAB">
+<title>SOCIAL AI LAB</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F3F4F9;
+    --surface: #FFFFFF;
+    --surface-2: #E9EBF4;
+    --ink: #121633;
+    --muted: #5C6180;
+    --line: #D9DCEA;
+    --accent: #FF5C1A;
+    --accent-ink: #FFFFFF;
+    --accent-soft: #FFE9DF;
+    --mint: #12B394;
+    --mint-soft: #DDF6F0;
+    --shadow: 0 12px 32px rgba(18, 22, 51, 0.08);
+    --display: "Zen Kaku Gothic New", "Noto Sans JP", "Hiragino Sans", sans-serif;
+    --latin: "Syne", "Zen Kaku Gothic New", sans-serif;
+    --body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0E1126;
+      --surface: #171B38;
+      --surface-2: #1F2447;
+      --ink: #EEF0FA;
+      --muted: #A6ABC7;
+      --line: #2C3157;
+      --accent: #FF7A3D;
+      --accent-ink: #14100C;
+      --accent-soft: #3A2417;
+      --mint: #34D6B4;
+      --mint-soft: #123B33;
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0E1126;
+    --surface: #171B38;
+    --surface-2: #1F2447;
+    --ink: #EEF0FA;
+    --muted: #A6ABC7;
+    --line: #2C3157;
+    --accent: #FF7A3D;
+    --accent-ink: #14100C;
+    --accent-soft: #3A2417;
+    --mint: #34D6B4;
+    --mint-soft: #123B33;
+    --shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  h1, h2, h3 { font-family: var(--display); line-height: 1.3; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  button, input, select { font: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+  .wrap { width: min(1080px, 100%); margin-inline: auto; padding-inline: 20px; }
+  section { padding-block: 72px; }
+  @media (max-width: 640px) { section { padding-block: 52px; } }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .eyebrow::before { content: ""; width: 20px; height: 2px; background: var(--accent); }
+  .lead { color: var(--muted); max-width: 40em; }
+  .sec-head { display: grid; gap: 14px; margin-bottom: 36px; }
+  .sec-head h2 { font-size: clamp(26px, 3.6vw, 36px); font-weight: 900; }
+
+  /* Header */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { font-family: var(--latin); font-weight: 800; font-size: 18px; letter-spacing: 0.02em; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+  .top nav { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+  .top nav a { text-decoration: none; color: var(--muted); }
+  .top nav a:hover { color: var(--ink); }
+  @media (max-width: 640px) { .top nav { display: none; } }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 24px; border-radius: 999px; font-weight: 700; text-decoration: none;
+    border: 2px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease;
+    white-space: nowrap;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+  .btn-sm { padding: 10px 18px; font-size: 14px; }
+
+  /* Hero */
+  .hero { padding-block: 64px 56px; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+  .hero h1 { font-size: clamp(34px, 5.6vw, 60px); font-weight: 900; letter-spacing: -0.01em; line-height: 1.22; margin-top: 18px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero .lead { margin-top: 20px; font-size: 17px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; align-items: center; }
+  .hero-note { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 12px; }
+  .hero-stats { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .stat b { display: block; font-family: var(--latin); font-size: 28px; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: 13px; color: var(--muted); }
+
+  /* Workflow card: the subject's own artifact */
+  .flow {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+    box-shadow: var(--shadow); padding: 22px; max-width: 100%;
+  }
+  .flow-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 14px; }
+  .flow-head strong { font-family: var(--display); font-weight: 700; font-size: 15px; }
+  .flow-head span { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .flow ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .flow li {
+    display: grid; grid-template-columns: 28px 1fr auto; gap: 12px; align-items: center;
+    padding: 11px 12px; border-radius: 12px; background: var(--surface-2);
+  }
+  .flow li .n { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .flow li .t { font-weight: 700; font-size: 14px; }
+  .flow li .t small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
+  .tag {
+    font-family: var(--mono); font-size: 11px; padding: 4px 9px; border-radius: 6px; white-space: nowrap;
+  }
+  .tag-ai { background: var(--accent-soft); color: var(--accent); }
+  .tag-you { background: var(--mint-soft); color: var(--mint); }
+  .flow-foot { margin-top: 14px; display: flex; gap: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+  .flow-foot i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+  /* Overview */
+  .overview { background: var(--surface); border-block: 1px solid var(--line); }
+  .overview .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 860px) { .overview .grid { grid-template-columns: 1fr; } }
+  .overview p + p { margin-top: 14px; }
+  .spec { border-top: 2px solid var(--ink); }
+  .spec div { display: grid; grid-template-columns: 110px 1fr; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .spec dt { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.06em; padding-top: 4px; margin: 0; }
+  .spec dd { margin: 0; }
+  .spec dd b { font-weight: 700; }
+  .who { margin-top: 28px; display: grid; gap: 8px; }
+  .who li { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; }
+  .who li::before { content: "✓"; color: var(--mint); font-weight: 700; flex: none; }
+
+  /* Features */
+  .features .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 720px) { .features .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px;
+    display: grid; gap: 12px; align-content: start;
+  }
+  .card .k { font-family: var(--latin); font-weight: 800; font-size: 13px; letter-spacing: 0.08em; color: var(--accent); }
+  .card h3 { font-size: 21px; font-weight: 700; }
+  .card p { color: var(--muted); font-size: 15px; }
+  .card .gain {
+    margin-top: 6px; padding: 10px 14px; border-radius: 10px; background: var(--surface-2);
+    font-size: 14px; display: flex; gap: 8px;
+  }
+  .card .gain b { color: var(--mint); flex: none; }
+
+  /* Tools strip */
+  .tools { padding-block: 0 72px; }
+  .tools .strip { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .tools .strip span { font-size: 13px; color: var(--muted); margin-right: 6px; }
+  .chip { font-family: var(--mono); font-size: 13px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); }
+
+  /* Curriculum */
+  .curri { background: var(--surface); border-block: 1px solid var(--line); }
+  .weeks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 860px) { .weeks { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .weeks { grid-template-columns: 1fr; } }
+  .week { padding: 20px; border-radius: 14px; background: var(--surface-2); display: grid; gap: 6px; align-content: start; }
+  .week .w { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.08em; }
+  .week h3 { font-size: 17px; font-weight: 700; }
+  .week p { font-size: 14px; color: var(--muted); }
+  .week .out { font-size: 13px; margin-top: 6px; padding-top: 8px; border-top: 1px dashed var(--line); }
+  .week .out b { color: var(--mint); }
+
+  /* FAQ */
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 700; font-family: var(--display); font-size: 17px; display: flex; justify-content: space-between; gap: 16px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: var(--mono); color: var(--accent); font-size: 20px; flex: none; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p { color: var(--muted); padding-bottom: 20px; max-width: 46em; }
+
+  /* CTA */
+  .cta { padding-block: 80px; }
+  .cta .box {
+    background: var(--ink); color: var(--bg); border-radius: 24px; padding: 48px;
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center;
+  }
+  :root[data-theme="dark"] .cta .box { background: var(--surface); color: var(--ink); border: 1px solid var(--line); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cta .box { background: var(--surface); color: var(--ink); border: 1px solid var(--line); } }
+  @media (max-width: 860px) { .cta .box { grid-template-columns: 1fr; padding: 32px 24px; } }
+  .cta h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 900; }
+  .cta .sub { opacity: 0.8; margin-top: 14px; }
+  .cta .deadline { margin-top: 22px; font-family: var(--mono); font-size: 13px; padding: 10px 14px; border-radius: 10px; background: rgba(255, 92, 26, 0.16); color: var(--accent); display: inline-block; }
+  .form { display: grid; gap: 12px; }
+  .form label { display: grid; gap: 6px; font-size: 13px; font-weight: 500; opacity: 0.9; }
+  .form input, .form select {
+    padding: 13px 14px; border-radius: 10px; border: 1px solid var(--line);
+    background: var(--surface); color: var(--ink); width: 100%;
+  }
+  .form .btn { width: 100%; margin-top: 6px; }
+  .form .fine { font-size: 12px; opacity: 0.7; }
+  .done { padding: 24px; border-radius: 14px; background: var(--mint-soft); color: var(--mint); font-weight: 700; text-align: center; }
+
+  footer { padding-block: 28px 40px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span>SOCIAL AI LAB</a>
+    <nav aria-label="ページ内">
+      <a href="#overview">講座概要</a>
+      <a href="#features">特徴</a>
+      <a href="#curriculum">カリキュラム</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#apply">無料説明会に申し込む</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- 1. キャッチコピー -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">AI × SNS ONLINE COURSE / 8 WEEKS</span>
+        <h1>バズは、才能じゃなく<br><em>設計</em>で起こす。</h1>
+        <p class="lead">ChatGPT・Claude・画像生成AIを自分専属の「編集部」にして、企画から台本、画像、投稿、分析までを1人で回す。SNS運用を8週間で仕組み化するオンライン講座です。</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#apply">無料説明会に申し込む</a>
+          <a class="btn btn-ghost" href="#curriculum">カリキュラムを見る</a>
+        </div>
+        <p class="hero-note">次回開講 2026年11月2日（月）／ 定員30名</p>
+        <div class="hero-stats">
+          <div class="stat"><b>1/5</b><span>投稿制作にかかる時間の目安</span></div>
+          <div class="stat"><b>50+</b><span>配布するプロンプトテンプレート</span></div>
+          <div class="stat"><b>4</b><span>対応SNS（Instagram / X / TikTok / YouTube）</span></div>
+        </div>
+      </div>
+
+      <div class="flow" aria-label="講座で身につく1投稿の制作フロー">
+        <div class="flow-head">
+          <strong>1投稿ができるまで（講座修了後の分担）</strong>
+          <span>所要 約40分</span>
+        </div>
+        <ol>
+          <li><span class="n">01</span><span class="t">ネタ出し<small>インサイトと競合投稿から企画案10本</small></span><span class="tag tag-ai">AI</span></li>
+          <li><span class="n">02</span><span class="t">企画を選ぶ<small>自分の経験と結びつく1本を決める</small></span><span class="tag tag-you">あなた</span></li>
+          <li><span class="n">03</span><span class="t">台本・キャプション<small>フック3案、本文、ハッシュタグ</small></span><span class="tag tag-ai">AI</span></li>
+          <li><span class="n">04</span><span class="t">画像・動画素材<small>サムネ、カルーセル、字幕つきショート</small></span><span class="tag tag-ai">AI</span></li>
+          <li><span class="n">05</span><span class="t">最終チェック・投稿<small>「自分の言葉」に直して公開</small></span><span class="tag tag-you">あなた</span></li>
+          <li><span class="n">06</span><span class="t">数字を読む<small>反応を要約し、次の一手を提案</small></span><span class="tag tag-ai">AI</span></li>
+        </ol>
+        <div class="flow-foot">
+          <span><i style="background: var(--accent)"></i>AIに任せる工程</span>
+          <span><i style="background: var(--mint)"></i>あなたにしかできない工程</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. サービス概要 -->
+  <section class="overview" id="overview">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <div class="sec-head">
+            <span class="eyebrow">Overview / 講座概要</span>
+            <h2>「毎日投稿がしんどい」を、<br>仕組みで終わらせる。</h2>
+          </div>
+          <p class="lead">SOCIAL AI LABは、SNS運用の「考える・作る・測る」をAIと分担できるようになるための8週間の実践講座です。ツールの使い方を暗記する講座ではありません。自分のアカウントのコンセプト設計から始め、講座期間中に実際に投稿し、数字を見て改善するところまでを、講師とAIと一緒に回します。</p>
+          <p class="lead">修了時には、あなたのアカウント専用のプロンプトセットと運用フローが手元に残ります。</p>
+          <ul class="who">
+            <li>個人事業主・フリーランスで、集客用のSNSを自分で運用している</li>
+            <li>副業や発信を始めたいが、投稿を続けられた試しがない</li>
+            <li>企業や店舗のSNS担当で、少人数で複数アカウントを回している</li>
+          </ul>
+        </div>
+        <dl class="spec">
+          <div><dt>期間</dt><dd><b>8週間</b>（週2〜3時間の学習目安）</dd></div>
+          <div><dt>形式</dt><dd>動画教材 ＋ 週1回のライブ添削会（録画あり）＋ 受講生コミュニティ</dd></div>
+          <div><dt>対応SNS</dt><dd>Instagram / X / TikTok / YouTube Shorts</dd></div>
+          <div><dt>扱うAI</dt><dd>ChatGPT、Claude、Canva AI、CapCut、Midjourney（いずれも無料プランで受講可）</dd></div>
+          <div><dt>受講料</dt><dd><b>98,000円</b>（税込）分割可 ／ 説明会参加で早期割引あり</dd></div>
+          <div><dt>サポート</dt><dd>修了後もテンプレート更新とコミュニティを継続利用</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 特徴 / メリット -->
+  <section class="features" id="features">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Features / 特徴とメリット</span>
+        <h2>AIを「使える」ではなく、<br>「任せられる」状態にする。</h2>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="k">01 / EDITORIAL PROMPTS</span>
+          <h3>AIを"編集部"にするプロンプト設計</h3>
+          <p>企画担当・ライター・デザイナー・アナリストの4役をAIに分担させる、役割別のプロンプトテンプレート50本以上を配布。自分のアカウント用に書き換える方法まで扱います。</p>
+          <div class="gain"><b>メリット</b>1投稿あたりの制作時間を大きく減らし、投稿頻度を維持できる</div>
+        </article>
+        <article class="card">
+          <span class="k">02 / REAL ACCOUNT</span>
+          <h3>自分のアカウントで、講座中に投稿する</h3>
+          <p>課題はすべて自分のアカウントでの実投稿。毎週のライブ添削会で、講師が投稿の設計と反応を一緒に振り返ります。架空のサンプルでは終わらせません。</p>
+          <div class="gain"><b>メリット</b>修了時には「学んだ」ではなく、伸び始めたアカウントが手元にある</div>
+        </article>
+        <article class="card">
+          <span class="k">03 / DATA-DRIVEN</span>
+          <h3>数字を読んで、次の一手を決める</h3>
+          <p>インサイトのスクリーンショットをAIに読ませ、伸びた理由と次の企画案を出させる分析フローを習得。感覚で投稿する運用から抜け出します。</p>
+          <div class="gain"><b>メリット</b>「なぜ伸びたか／伸びなかったか」を言語化でき、再現できる</div>
+        </article>
+        <article class="card">
+          <span class="k">04 / KEEPS UPDATING</span>
+          <h3>AIツールの変化に、修了後も追いつける</h3>
+          <p>AIもSNSのアルゴリズムも数か月で変わります。テンプレートの更新と月1回のアップデート会を修了後も継続。学び直しのコストを講座側で吸収します。</p>
+          <div class="gain"><b>メリット</b>一度身につけた仕組みが古くならない</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="tools">
+    <div class="wrap">
+      <div class="strip">
+        <span>講座で扱うツール</span>
+        <span class="chip">ChatGPT</span>
+        <span class="chip">Claude</span>
+        <span class="chip">Canva AI</span>
+        <span class="chip">CapCut</span>
+        <span class="chip">Midjourney</span>
+        <span class="chip">Meta Business Suite</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="curri" id="curriculum">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Curriculum / 8週間の流れ</span>
+        <h2>設計、制作、分析の順に、自分の運用フローを組み立てる。</h2>
+      </div>
+      <div class="weeks">
+        <div class="week">
+          <span class="w">WEEK 1–2</span>
+          <h3>アカウント設計</h3>
+          <p>誰に、何を、どの口調で。AIとの壁打ちでコンセプトとペルソナを固める。</p>
+          <p class="out"><b>成果物</b> コンセプトシートと自分専用の基本プロンプト</p>
+        </div>
+        <div class="week">
+          <span class="w">WEEK 3–4</span>
+          <h3>企画と台本</h3>
+          <p>ネタ出し、フック、本文、ハッシュタグをAIに分担させ、週3本のペースで投稿を作る。</p>
+          <p class="out"><b>成果物</b> 投稿12本と企画ストック30本</p>
+        </div>
+        <div class="week">
+          <span class="w">WEEK 5–6</span>
+          <h3>画像と動画</h3>
+          <p>サムネイル、カルーセル、字幕つきショート動画を、生成AIと編集ツールで量産する。</p>
+          <p class="out"><b>成果物</b> ビジュアルテンプレート一式</p>
+        </div>
+        <div class="week">
+          <span class="w">WEEK 7–8</span>
+          <h3>分析と改善</h3>
+          <p>インサイトをAIに読ませて改善案を出し、翌月の運用計画に落とし込む。</p>
+          <p class="out"><b>成果物</b> 月次運用フローと改善レポート</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">FAQ / よくある質問</span>
+        <h2>申し込み前によく聞かれること</h2>
+      </div>
+      <details open>
+        <summary>AIを使ったことがなくても大丈夫ですか？</summary>
+        <p>大丈夫です。Week 1でアカウント作成から丁寧に扱います。受講生の約6割はChatGPTを数回触った程度の状態から始めています。</p>
+      </details>
+      <details>
+        <summary>フォロワーがほぼ0のアカウントでも受講できますか？</summary>
+        <p>できます。むしろ設計から始められるので、途中から立て直すより早く伸びるケースが多いです。既存アカウントの再設計にも対応します。</p>
+      </details>
+      <details>
+        <summary>有料のAIツールを契約する必要はありますか？</summary>
+        <p>必須ではありません。カリキュラムは各ツールの無料プランで完走できるように組んでいます。有料プランのほうが効率的な工程は、その旨を明示します。</p>
+      </details>
+      <details>
+        <summary>ライブ添削会に参加できない週があっても問題ないですか？</summary>
+        <p>録画を翌日までに共有します。課題の添削はコミュニティ内でテキストでも受けられます。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 4. CTA -->
+  <section class="cta" id="apply">
+    <div class="wrap">
+      <div class="box">
+        <div>
+          <span class="eyebrow">Free Session / 無料説明会</span>
+          <h2>まず、あなたのアカウントを<br>30分で診断します。</h2>
+          <p class="sub">無料説明会では、講座の説明に加えて、参加者のアカウントを1つ選び、AIを使った改善案をその場でお見せします。参加後の営業連絡はしません。</p>
+          <span class="deadline">11月期の申し込み締切 2026年10月26日（日）</span>
+        </div>
+        <form class="form" id="apply-form" novalidate>
+          <label for="f-name">お名前<input id="f-name" name="name" type="text" required autocomplete="name" placeholder="山田 花子"></label>
+          <label for="f-email">メールアドレス<input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+          <label for="f-date">希望日程
+            <select id="f-date" name="date" required>
+              <option value="">選択してください</option>
+              <option>10月14日（水）20:00〜</option>
+              <option>10月18日（日）10:00〜</option>
+              <option>10月21日（水）20:00〜</option>
+              <option>録画視聴を希望</option>
+            </select>
+          </label>
+          <button class="btn btn-primary" type="submit">無料説明会に申し込む</button>
+          <p class="fine">所要30分・オンライン（Zoom）・参加費無料</p>
+        </form>
+        <div class="done" id="apply-done" hidden>受け付けました。ご入力のメールアドレスに参加用URLをお送りします。</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 SOCIAL AI LAB</span>
+    <span>特定商取引法に基づく表記 ／ プライバシーポリシー</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var form = document.getElementById('apply-form');
+    var done = document.getElementById('apply-done');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      form.hidden = true;
+      done.hidden = false;
+    });
+  })();
+</script>
+</body>
+</html>
