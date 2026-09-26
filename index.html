@@ -153,6 +153,20 @@
   .flow-foot { margin-top: 14px; display: flex; gap: 14px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
   .flow-foot i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
 
+  /* Hero visual: generated image with the workflow card overlaid */
+  .hero-visual { position: relative; margin-bottom: 28px; }
+  .hero-visual img { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; box-shadow: var(--shadow); }
+  .hero-visual .flow { position: absolute; left: -28px; bottom: -28px; width: min(86%, 400px); padding: 16px; background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(8px); }
+  .hero-visual .flow li { padding: 7px 10px; gap: 10px; }
+  .hero-visual .flow li .t { font-size: 13px; }
+  .hero-visual .flow li .t small { font-size: 11px; }
+  .hero-visual .flow-head { margin-bottom: 10px; }
+  @media (max-width: 860px) {
+    .hero-visual { margin-bottom: 0; display: grid; gap: 16px; }
+    .hero-visual img { aspect-ratio: 4 / 3; }
+    .hero-visual .flow { position: static; width: 100%; padding: 22px; }
+  }
+
   /* Overview */
   .overview { background: var(--surface); border-block: 1px solid var(--line); }
   .overview .grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
@@ -272,6 +286,8 @@
         </div>
       </div>
 
+      <div class="hero-visual">
+        <img src="assets/hero.jpg" width="1024" height="1280" alt="明るいデスクでノートPCとスマートフォンを使うクリエイター" fetchpriority="high">
       <div class="flow" aria-label="講座で身につく1投稿の制作フロー">
         <div class="flow-head">
           <strong>1投稿ができるまで（講座修了後の分担）</strong>
@@ -289,6 +305,7 @@
           <span><i style="background: var(--accent)"></i>AIに任せる工程</span>
           <span><i style="background: var(--mint)"></i>あなたにしかできない工程</span>
         </div>
+      </div>
       </div>
     </div>
   </section>

@@ -1,8 +1,8 @@
 # 提出：AI×SNSスキル オンライン講座 LP
 
 - 講座名（仮）：SOCIAL AI LAB。AIを「編集部」にしてSNS運用を8週間で仕組み化する講座。
-- LP本体は [index.html](index.html)。素のHTML/CSS/JSで1ファイル。ブラウザで開けば動く。
-- 制作は Claude Code（Claude Fable 5.1）のみ。構成・コピー・デザイン・コーディングを一貫して生成。
+- LP本体は [index.html](index.html)。素のHTML/CSS/JS。公開URL: https://honeycom1.github.io/landing-page-sample/
+- 構成・コピー・デザイン・コーディングは Claude Code（Claude Fable 5.1）、ヒーロー画像は ComfyUI（JuggernautXL v9）で生成。
 
 ## LP構成
 
@@ -12,7 +12,7 @@
 - サブ：ChatGPT・Claude・画像生成AIを自分専属の「編集部」にして、企画から台本、画像、投稿、分析までを1人で回す。SNS運用を8週間で仕組み化するオンライン講座です。
 - CTA：「無料説明会に申し込む」（主）／「カリキュラムを見る」（副）
 - 数字：制作時間の目安 1/5、プロンプトテンプレート50本以上、対応SNS 4つ
-- ビジュアル：「1投稿ができるまで」の6工程フロー。AIに任せる工程と、あなたにしかできない工程を色分けし、講座の価値（分担の設計）を一目で伝える
+- ビジュアル：ComfyUIで生成した「明るいデスクで働くクリエイター」の写真の上に、「1投稿ができるまで」の6工程フローを重ねる。AIに任せる工程と、あなたにしかできない工程を色分けし、講座の価値（分担の設計）を一目で伝える
 
 ### 2. サービス概要
 
@@ -43,9 +43,10 @@
 
 | ツール | 用途 |
 |---|---|
-| Claude Code（Claude Fable 5.1） | LP構成の設計、キャッチコピーと本文のライティング、配色・タイポグラフィ設計、HTML/CSS/JSの実装、本提出文書の作成 |
+| Claude Code（Claude Fable 5.1） | LP構成の設計、キャッチコピーと本文のライティング、配色・タイポグラフィ設計、HTML/CSS/JSの実装、画像生成プロンプトの作成、本提出文書の作成 |
+| ComfyUI + JuggernautXL v9（SDXL） | ヒーロー画像の生成。1024×1280、30 steps、dpmpp_2m karras、CFG 5.5。候補3枚から1枚を採用 |
 
-画像生成AIは使っていない。ビジュアルは工程フローなどをHTML/CSSで描画した。
+画像生成プロンプト（抜粋）: editorial photograph of a young japanese woman content creator at a bright minimalist desk, holding a smartphone, laptop and small ring light, soft window daylight, warm tangerine orange accent color, shallow depth of field, 35mm lens
 
 ## 補足
 
